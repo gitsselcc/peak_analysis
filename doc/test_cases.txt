@@ -54,3 +54,34 @@ ls
 log.out
 fasta_peaks/
 ```
+
+Caso: Directorio de salida no existe.
+
+Entradas:
+
+Archivo de picos válido.
+
+Archivo FASTA del genoma válido.
+
+Directorio de salida inexistente.
+
+Esperado:
+
+El sistema debe crear automáticamente el directorio de salida si no existe.
+
+Imprimir un mensaje: "Info: Output directory created: fasta_peaks/".
+
+bash
+```
+mk_fasta_from_peaks.py -i peak_file.txt -g Ecoli.fna -o fasta_peaks/
+```
+```
+Info: Output directory created: fasta_peaks/
+```
+```
+ls
+```
+bash
+```
+fasta_peaks/
+```
