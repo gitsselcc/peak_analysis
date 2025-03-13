@@ -17,22 +17,45 @@ El proyecto busca automatizar la extracción y el análisis de secuencias genóm
 ### Requisitos Funcionales:
 
 #### A. Extracción de Secuencias FASTA:
+
     
 1.  **Entrada de Datos:**
+- VERIFICACIONES
+   -   Verificar que el archivo de picos tenga el formato correcto (columnas esperadas).
+  -   Verificar que el archivo FASTA del genoma esté en formato válido y no esté corrupto 
+  -   Si los archivos no son válidos, el sistema debe mostrar un mensaje de error claro y detallado.
     
-    -   El módulo debe aceptar como argumentos de línea de comandos los siguientes archivos:
+ -   El módulo debe aceptar como argumentos de línea de comandos los siguientes archivos:
         -   Archivo de picos que contiene la información de las regiones de unión de cada factor de transcripción (ver sección "Archivo de Picos" al final de la sección de requisitos).
         -   Archivo de la secuencia del genoma de _E. coli_ en formato FASTA.
     -   Añadir un argumento para especificar el directorio de salida donde se almacenarán los archivos generados.
 2.  **Extracción y Procesamiento de Secuencias:**
-    
-    -   Leer el archivo de picos para obtener las posiciones de inicio y fin de los picos asociados a cada `TF_name`.
-    -   Extraer las secuencias desde el archivo FASTA del genoma utilizando las coordenadas `Peak_start` y `Peak_end`, asegurándose de considerar solamente la cadena forward.
+   -   Leer el archivo de picos para obtener las posiciones de inicio y fin de los picos asociados a cada `TF_name`.
+   -   Extraer las secuencias desde el archivo FASTA del genoma utilizando las coordenadas `Peak_start` y `Peak_end`, asegurándose de considerar solamente la cadena forward.
+   
+    - MANEJO DE ERRORES
+      -   Si las coordenadas  `Peak_start`  o  `Peak_end`  están fuera del rango del genoma, el sistema debe registrar una advertencia en un archivo de log y continuar procesando el resto de los picos.
+      -   Si  `Peak_start`  >  `Peak_end`, el sistema debe invertir las coordenadas automáticamente y registrar una advertencia.
 3.  **Generación de Archivos FASTA:**
     
     -   Crear archivos FASTA individuales para cada `TF_name`. Los nombres de los archivos deben coincidir con el `TF_name` y usar la extensión `.fa`.
     -   Almacenar estos archivos en el directorio de salida especificado.
     
+- VERIFICACION
+Verificar si el directorio de salida existe. Si no existe, crearlo automáticamente.
+
+  -   Añadir un mensaje informativo:  `"Info: Output directory created: <directorio>"`.
+
+
+- AMPLIACION
+Permitir la sobrescritura o no de archivos existentes en el directorio de salida.
+
+  -   Añadir un argumento opcional (`-f`  o  `--force`) para sobrescribir archivos existentes sin preguntar.
+    
+  -   Si no se usa  `-f`, el sistema debe preguntar al usuario antes de sobrescribir archivos.
+
+
+
 
 
 #### B. *Automatización del Análisis de Motivos:**
