@@ -55,20 +55,15 @@ log.out
 fasta_peaks/
 ```
 
-Caso: Directorio de salida no existe.
+4. **Caso: Directorio de salida no existe.**
 
-Entradas:
-
+   * **Entradas:**
 Archivo de picos válido.
-
 Archivo FASTA del genoma válido.
-
 Directorio de salida inexistente.
 
-Esperado:
-
+   * **Esperado:**
 El sistema debe crear automáticamente el directorio de salida si no existe.
-
 Imprimir un mensaje: "Info: Output directory created: fasta_peaks/".
 
 bash
@@ -85,3 +80,5 @@ bash
 ```
 fasta_peaks/
 ```
+
+
