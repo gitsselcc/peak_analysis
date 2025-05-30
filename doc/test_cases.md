@@ -1,4 +1,3 @@
-
 ##  Casos de Prueba para el Módulo: Extractor y Creador de Secuencias FASTA
 
 ###  **1. Archivo del genoma no se encuentra**
@@ -95,3 +94,52 @@ No se registraron errores en log_errores_extraccion.txt.
   * El directorio `output_nuevo/` fue creado.
   * Contiene `.fasta` y `.txt` según los resultados.
 
+
+
+
+### 5. **Archivo de picos con coordenadas no numéricas**
+
+-   Ejemplo: `start = "abc"` o `end = "???"`
+    
+
+-   Se maneja y se registra 
+    
+    
+    ```python
+    Advertencia: Coordenadas no válidas, línea omitida...
+    
+    ```
+
+
+### 6. **Líneas incompletas (menos de 5 columnas)**
+
+-   Se maneja mediante:
+    
+    ```python
+    if len(columnas) >= 5: ...
+    else:
+        registrar_log(f"Advertencia: Línea incompleta, se omite: ...")
+    
+    ```
+    
+
+### 7. **Coordenadas invertidas (`start > end`)**
+
+-   Se detecta y corrige con:
+    
+    ```python
+    registrar_log(f"Advertencia: Coordenadas invertidas...") 
+    start, end = end, start
+    
+    ```
+
+
+### 8. **Genoma en formato incorrecto (sin `>` al inicio)**
+
+-  Se detecta con el segmento de codigo:
+    
+    ```python
+    if not lineas or not lineas[0].startswith(">"):
+        print("Error: El archivo FASTA no tiene formato válido...")
+    
+    ```
