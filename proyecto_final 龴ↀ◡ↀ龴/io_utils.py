@@ -2,6 +2,7 @@
 
 import os
 #Escribe las secuencias en grupos de TF en archivos FASTA y registra advertencias si las corrdenadas estan fuera de rango 
+# Además, registra advertencias si las coordenadas están fuera de rango del genoma
 def escribir_fasta(grupos, genoma, log_path, output_dir):
    
     total_genoma = len(genoma)
