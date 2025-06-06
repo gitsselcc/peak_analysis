@@ -1,0 +1,22 @@
+# Ignorar caches y compilados de Python
+__pycache__/
+*.pyc
+
+# Ignorar salidas y resultados de Python
+output/
+*/output/
+*/output_files/
+*/archivos de salida/
+*/out*/
+*/output_nuevo/
+
+# Ignorar archivos de prueba y datos simulados
+test/data_test/
+*/data/archivos de prueba/
+*/data/archivos de salida de prueba/
+
+
+# Ignorar archivos temporales y de respaldo
+*.tmp
+*.bak
+*.swp
