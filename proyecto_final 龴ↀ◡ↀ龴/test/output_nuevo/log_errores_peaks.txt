@@ -1,0 +1,1 @@
+Advertencia: Coordenadas invertidas para aaeR. Se corrigieron: start=3389658, end=3389342
